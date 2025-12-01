@@ -177,15 +177,15 @@ const Task6 = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-10 h-10 text-purple-600" />
+            {/* <Sparkles className="w-10 h-10 text-purple-600" /> */}
             <h1 className="text-4xl font-bold text-gray-800">
               AI Image Generation & Display Widget
             </h1>
-            <Sparkles className="w-10 h-10 text-purple-600" />
+            {/* <Sparkles className="w-10 h-10 text-purple-600" /> */}
           </div>
-          <p className="text-gray-600 text-lg">
+          {/* <p className="text-gray-600 text-lg">
             Generate stunning images using OpenAI's DALL-E 3
-          </p>
+          </p> */}
         </div>
 
         {/* API Key Management */}
@@ -267,7 +267,7 @@ const Task6 = () => {
             </div>
 
             {/* Settings */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Image Size
@@ -298,7 +298,7 @@ const Task6 = () => {
                   disabled={isGenerating}
                 />
               </div>
-            </div>
+            </div> */}
 
             {/* Generate Button */}
             <button
