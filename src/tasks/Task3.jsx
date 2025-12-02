@@ -21,19 +21,33 @@ const Task3 = () => {
   const [startDate, setStartDate] = useState("2025-01-01");
   const [endDate, setEndDate] = useState("2025-12-31");
 
-  // Filter data by date range
+ 
+    /* ---------------------------------------------
+      Filter data by date range
+     --------------------------------------------- */
   const filteredData = useMemo(() => {
     return rawData.filter((item) => {
       return item.date >= startDate && item.date <= endDate;
     });
   }, [startDate, endDate]);
 
-  return (
-    <div className="w-full p-6  bg-gradient-to-br from-blue-50 to-indigo-100">
-      {/* Title */}
-      <h2 className="text-xl font-semibold mb-4">Chart Widget Customization</h2>
 
-      {/* Filters Section */}
+//   ✔ Why use useMemo?
+
+// Because without it, every render would re-calculate filtering.
+
+// ✔ What it does?
+
+// Shows data only between selected start and end dates.
+
+// Example:
+// If start = 2025-01-11 and end = 2025-02-05
+// Only entries matching this date range will appear.
+
+  return (
+    <>
+    <div className="w-full p-6  bg-gradient-to-br from-blue-50 to-indigo-100">
+      <h2 className="text-xl font-semibold mb-4">Chart Widget Customization</h2>
       <div className="flex flex-wrap gap-4 mb-6 items-end">
         
         {/* Start Date */}
@@ -123,6 +137,8 @@ const Task3 = () => {
         )}
       </div>
     </div>
+    
+    </>
   );
 };
 

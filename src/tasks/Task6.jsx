@@ -14,7 +14,6 @@ const Task6 = () => {
   const [imageSize, setImageSize] = useState("1024x1024");
   const [numImages, setNumImages] = useState(1);
 
-  // Load API key from localStorage on mount
   useEffect(() => {
     const savedApiKey = localStorage.getItem("openai_api_key");
     if (savedApiKey) {
@@ -84,7 +83,6 @@ const Task6 = () => {
 
     setIsGenerating(true);
     try {
-      // DALL-E 3 only supports n=1, so we generate sequentially
       const imagesToGenerate = Math.min(numImages, 4);
       const newImages = [];
 
@@ -92,9 +90,9 @@ const Task6 = () => {
         const response = await openai.images.generate({
           model: "dall-e-3",
           prompt: prompt,
-          n: 1, // DALL-E 3 only supports 1 image per request
+          n: 1, 
           size: imageSize,
-          quality: "standard", // or "hd" for higher quality
+          quality: "standard", 
         });
 
         if (response.data && response.data.length > 0) {
@@ -113,15 +111,14 @@ const Task6 = () => {
       if (newImages.length > 0) {
         setGeneratedImages((prev) => [...newImages, ...prev]);
         toast.success(`Successfully generated ${newImages.length} image(s)!`);
-        setPrompt(""); // Clear prompt after successful generation
+        setPrompt("")
       } else {
         toast.warn("No images were generated");
       }
     } catch (error) {
       console.error("Error generating image:", error);
       let errorMessage = "Failed to generate image";
-      
-      // Handle different error types
+    
       if (error.response) {
         errorMessage = error.response.data?.error?.message || errorMessage;
       } else if (error.error) {
@@ -130,7 +127,6 @@ const Task6 = () => {
         errorMessage = error.message;
       }
 
-      // Provide user-friendly error messages
       if (errorMessage.includes("insufficient_quota")) {
         errorMessage = "Insufficient API credits. Please add credits to your OpenAI account.";
       } else if (errorMessage.includes("invalid_api_key")) {
@@ -176,16 +172,11 @@ const Task6 = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            {/* <Sparkles className="w-10 h-10 text-purple-600" /> */}
+          <div className="flex items-center justify-center gap-3 mb-4">       
             <h1 className="text-4xl font-bold text-gray-800">
               AI Image Generation & Display Widget
-            </h1>
-            {/* <Sparkles className="w-10 h-10 text-purple-600" /> */}
+            </h1>   
           </div>
-          {/* <p className="text-gray-600 text-lg">
-            Generate stunning images using OpenAI's DALL-E 3
-          </p> */}
         </div>
 
         {/* API Key Management */}
@@ -265,40 +256,6 @@ const Task6 = () => {
                 disabled={isGenerating}
               />
             </div>
-
-            {/* Settings */}
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Image Size
-                </label>
-                <select
-                  value={imageSize}
-                  onChange={(e) => setImageSize(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  disabled={isGenerating}
-                >
-                  <option value="1024x1024">1024x1024 (Square)</option>
-                  <option value="1792x1024">1792x1024 (Landscape)</option>
-                  <option value="1024x1792">1024x1792 (Portrait)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Number of Images (1-4)
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="4"
-                  value={numImages}
-                  onChange={(e) => setNumImages(Math.min(4, Math.max(1, parseInt(e.target.value) || 1)))}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  disabled={isGenerating}
-                />
-              </div>
-            </div> */}
 
             {/* Generate Button */}
             <button

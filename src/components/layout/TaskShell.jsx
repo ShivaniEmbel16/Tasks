@@ -36,3 +36,29 @@ export default function TaskShell({ task, tasks, children }) {
     </div>
   );
 }
+
+
+
+// ✅ 4. TaskShell.jsx — Page Layout + Sidebar Navigation
+// <aside> ... tasks list … </aside>
+
+// ✔ Sidebar
+
+// Shows all tasks from the tasks array
+
+// Highlights the selected one
+
+// Clicking a task changes the URL → /task/3
+
+// ✔ Main Content Area
+// <main>
+//   <h1>{task.title}</h1>
+//   <div>{children}</div>   // children = actual task component like <Task1/>
+// </main>
+
+
+// So TaskShell provides:
+
+// Left Menu (links)
+
+// Right Side (task content)

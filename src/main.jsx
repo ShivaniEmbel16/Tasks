@@ -13,3 +13,13 @@ createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </StrictMode>
 );
+
+
+
+// ✔ What this does:
+
+// StrictMode → helps catch React errors.
+
+// BrowserRouter → enables URL routing (/task/1, /task/2 etc.).
+
+// App → your main component that contains all page routes.
